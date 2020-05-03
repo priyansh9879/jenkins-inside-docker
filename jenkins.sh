@@ -12,13 +12,13 @@ echo ===========================================================================
 echo    Pulling the Image jenkin//jenkins:lts from priyansh9879 Docker Hub Repo
 echo =============================================================================
 echo
-if [ $(docker pull jenkins/jenkins:lts > /dev/null 2>&1; echo $?) = "0" ];
+if [ $(docker pull priyansh9879/jenkins-server:latest > /dev/null 2>&1; echo $?) = "0" ];
 then
 	docker pull jenkins/jenkins:lts > /dev/null 2>&1
 	echo =============================================================================
 	echo                          Downloading Successfull
 	echo =============================================================================
-elif [ $(docker pull jenkins/jenkins:lts) = '*Status: Image is up to date for jenkins/jenkins:lts*' ];
+elif [ $(docker pull priyansh9879/jenkins-server:latest) = '*Status: Image is up to date for priyansh9879/jenkins-server:latest:*' ];
 then
 	echo =============================================================================
 	echo             Docker Image jenkins/jenkins:lts is already Present
