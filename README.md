@@ -23,7 +23,7 @@ a) For Stoping your Container:
 # docker stop <container_name>
 
 b) For Starting Container:
-# docker start <docker_name>
+# docker start <container_name>
 
 c) for deleting container, first stop the container and then:
 # docker rm <container_name>
