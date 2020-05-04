@@ -9,19 +9,18 @@ read input
 echo
 sleep 4s
 echo =============================================================================
-echo    Pulling the Image jenkin//jenkins:lts from priyansh9879 Docker Hub Repo
+echo Pulling priyansh9879/jenkins-server:latest from priyansh9879 Docker Hub Repo
 echo =============================================================================
 echo
-if [ $(docker pull priyansh9879/jenkins-server:latest > /dev/null 2>&1; echo $?) = "0" ];
-then
-	docker pull jenkins/jenkins:lts > /dev/null 2>&1
-	echo =============================================================================
-	echo                          Downloading Successfull
-	echo =============================================================================
-elif [ $(docker pull priyansh9879/jenkins-server:latest) = '*Status: Image is up to date for priyansh9879/jenkins-server:latest:*' ];
+if docker images | grep priyansh9879/jenkins-server:latest
 then
 	echo =============================================================================
-	echo             Docker Image jenkins/jenkins:lts is already Present
+	echo     Docker Image priyansh9879/jenkins-server:latest is already Present
+	echo =============================================================================
+else
+	docker pull priyansh9879/jenkins-server:latest > /dev/null 2>&1
+	echo =============================================================================
+	echo                           Download Successfull
 	echo =============================================================================
 fi
 sleep 4s
@@ -49,7 +48,7 @@ then
 fi
 
 echo =============================================================================
-echo                you password to access your container is
+echo                your password to access your container is
 docker exec $input cat /var/jenkins_home/secrets/initialAdminPassword
 echo =============================================================================
 
