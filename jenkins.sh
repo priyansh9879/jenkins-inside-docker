@@ -53,6 +53,6 @@ docker exec $input cat /var/jenkins_home/secrets/initialAdminPassword
 echo =============================================================================
 
 echo =============================================================================
-echo        "For accessing jenkins portal, Visit -> http://localhost:8080"
+echo     "For accessing your jenkins portal, Visit -> http://localhost:8080"
 echo =============================================================================
 
