@@ -15,7 +15,7 @@ echo
 if docker images | grep priyansh9879/jenkins
 then
 	echo =============================================================================
-	echo     Docker Image priyansh9879/jenkins-server:latest is already Present
+	echo       Docker Image priyansh9879/jenkins:latest is already Present
 	echo =============================================================================
 else
 	docker pull priyansh9879/jenkins:latest > /dev/null 2>&1
@@ -28,16 +28,16 @@ echo
 echo =============================================================================
 echo        Started Building Container with the name $input. Please wait
 echo =============================================================================
-if [ $(docker run -dit --name $input -p 8080:8080  jenkins/jenkins:lts > /dev/null 2>&1; echo $?) = "0" ];
+if [ $(docker run -dit --name $input -p 8080:8080 priyansh9879/jenkins:latest > /dev/null 2>&1; echo $?) = "0" ];
 then
 	sleep 120s
-	docker run -dit --name $input -p 8080:8080  jenkins/jenkins:lts > /dev/null 2>&1
+	docker run -dit --name $input -p 8080:8080 priyansh9879/jenkins:latest > /dev/null 2>&1
 	echo
 	echo =============================================================================
 	echo "Container is successfully made with the name $input"
 	echo =============================================================================
 	echo
-elif [ $(docker run -dit --name $input -p 8080:8080  jenkins/jenkins:lts > /dev/null 2>&1; echo $?) = "125" ];
+elif [ $(docker run -dit --name $input -p 8080:8080 priyansh9879/jenkins:latest > /dev/null 2>&1; echo $?) = "125" ];
 then
 	sleep 10s
 	echo
