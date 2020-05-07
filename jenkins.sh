@@ -9,16 +9,16 @@ read input
 echo
 sleep 4s
 echo =============================================================================
-echo Pulling priyansh9879/jenkins-server:latest from priyansh9879 Docker Hub Repo
+echo    Pulling priyansh9879/jenkins:latest from priyansh9879 Docker Hub Repo
 echo =============================================================================
 echo
-if docker images | grep priyansh9879/jenkins-server:latest
+if docker images | grep priyansh9879/jenkins
 then
 	echo =============================================================================
 	echo     Docker Image priyansh9879/jenkins-server:latest is already Present
 	echo =============================================================================
 else
-	docker pull priyansh9879/jenkins-server:latest > /dev/null 2>&1
+	docker pull priyansh9879/jenkins:latest > /dev/null 2>&1
 	echo =============================================================================
 	echo                           Download Successfull
 	echo =============================================================================
