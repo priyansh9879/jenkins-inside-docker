@@ -1,4 +1,4 @@
-# jenkins-server
+# Jenkins Server Inside Docker Container
 This is my first Docker Project in which i have Automated the Process of Deploying Jenkins inside a Docker Container using Shell Script. Here are the steps to use this project:
 
 1. Download the Shell Script in your Base RHel8 System from the link below:
