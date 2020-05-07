@@ -4,18 +4,23 @@ echo +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 echo +       Program for Deploying Jenkins Server inside Docker Container        +
 echo +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 echo
-echo Enter the name for your jenkins Server
+echo Enter the name you want to give to your jenkins Server
 read input
+echo
+echo "Enter the port at which you want to launch your Jenkins Server (Eg- 81)"
+echo "Note: Don't try to use port 80 as it will cause some conflict in your system."
+read port
 echo
 sleep 4s
 echo =============================================================================
 echo    Pulling priyansh9879/jenkins:latest from priyansh9879 Docker Hub Repo
 echo =============================================================================
 echo
-if docker images | grep priyansh9879/jenkins
+sleep 4s
+if docker images | grep priyansh9879/jenkins > /dev/null 2>&1
 then
 	echo =============================================================================
-	echo       Docker Image priyansh9879/jenkins:latest is already Present
+	echo        Docker Image priyansh9879/jenkins:latest is already Present
 	echo =============================================================================
 else
 	docker pull priyansh9879/jenkins:latest > /dev/null 2>&1
@@ -26,33 +31,35 @@ fi
 sleep 4s
 echo
 echo =============================================================================
-echo        Started Building Container with the name $input. Please wait
+echo           Building Container with the name $input. Please wait
 echo =============================================================================
-if [ $(docker run -dit --name $input -p 8080:8080 priyansh9879/jenkins:latest > /dev/null 2>&1; echo $?) = "0" ];
+
+if [ $(docker run -dit --name $input -p 80$port:8080 priyansh9879/jenkins:latest > /dev/null 2>&1; echo $?) = "0" ];
 then
 	sleep 120s
-	docker run -dit --name $input -p 8080:8080 priyansh9879/jenkins:latest > /dev/null 2>&1
+	docker run -dit --name $input -p 80$port:8080 priyansh9879/jenkins:latest > /dev/null 2>&1
 	echo
 	echo =============================================================================
-	echo "Container is successfully made with the name $input"
+	echo     Container is successfully made with the name $input on port 80$port
 	echo =============================================================================
 	echo
-elif [ $(docker run -dit --name $input -p 8080:8080 priyansh9879/jenkins:latest > /dev/null 2>&1; echo $?) = "125" ];
+elif [ $(docker run -dit --name $input -p 80$port:8080 priyansh9879/jenkins:latest > /dev/null 2>&1; echo $?) = "125" ];
 then
 	sleep 10s
 	echo
 	echo =============================================================================
-	echo               Container already present with the name $input
+	echo Container already present with the name $input. Rerun the script again and
+	echo choose other name than $input
 	echo =============================================================================
 	echo
+	exit
 fi
-
+echo
 echo =============================================================================
 echo                your password to access your container is
 docker exec $input cat /var/jenkins_home/secrets/initialAdminPassword
 echo =============================================================================
 
 echo =============================================================================
-echo     "For accessing your jenkins portal, Visit -> http://localhost:8080"
+echo    "For accessing your jenkins portal, Visit -> http://localhost:80$port"
 echo =============================================================================
-
