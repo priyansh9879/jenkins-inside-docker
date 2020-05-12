@@ -13,17 +13,17 @@ read port
 echo
 sleep 4s
 echo =============================================================================
-echo    Pulling priyansh9879/jenkins:latest from priyansh9879 Docker Hub Repo
+echo         Pulling priyansh9879/centos-jenkins:7 Image from DockerHub
 echo =============================================================================
 echo
 sleep 4s
-if docker images | grep priyansh9879/jenkins > /dev/null 2>&1
+if docker images | grep priyansh9879/centos-jenkins > /dev/null 2>&1
 then
 	echo =============================================================================
-	echo        Docker Image priyansh9879/jenkins:latest is already Present
+	echo        Docker Image priyansh9879/centos-jenkins:7 is already Present
 	echo =============================================================================
 else
-	docker pull priyansh9879/jenkins:latest > /dev/null 2>&1
+	docker pull priyansh9879/centos-jenkins:7 > /dev/null 2>&1
 	echo =============================================================================
 	echo                           Download Successfull
 	echo =============================================================================
@@ -34,16 +34,16 @@ echo ===========================================================================
 echo           Building Container with the name $input. Please wait
 echo =============================================================================
 
-if [ $(docker run -dit --name $input -p 80$port:8080 priyansh9879/jenkins:latest > /dev/null 2>&1; echo $?) = "0" ];
+if [ $(docker run -dit --name $input --privileged -expose -p 80$port:8080 -v /:/host priyansh9879/centos-jenkins:7 > /dev/null 2>&1; echo $?) = "0" ];
 then
 	sleep 120s
-	docker run -dit --name $input -p 80$port:8080 priyansh9879/jenkins:latest > /dev/null 2>&1
+	docker run -dit --name $input --privileged -expose -p 80$port:8080 -v /:/host priyansh9879/centos-jenkins:7 > /dev/null 2>&1
 	echo
 	echo =============================================================================
 	echo     Container is successfully made with the name $input on port 80$port
 	echo =============================================================================
 	echo
-elif [ $(docker run -dit --name $input -p 80$port:8080 priyansh9879/jenkins:latest > /dev/null 2>&1; echo $?) = "125" ];
+elif [ $(docker run -dit --name $input --privileged -expose -p 80$port:8080 -v /:/host priyansh9879/centos-jenkins:7 > /dev/null 2>&1; echo $?) = "125" ];
 then
 	sleep 10s
 	echo
@@ -56,8 +56,8 @@ then
 fi
 echo
 echo =============================================================================
-echo                your password to access your container is
-docker exec $input cat /var/jenkins_home/secrets/initialAdminPassword
+echo               your password to access your container is
+docker exec $input cat /root/.jenkins/secrets/initialAdminPassword
 echo =============================================================================
 
 echo =============================================================================
