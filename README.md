@@ -6,8 +6,8 @@ This is my first Docker Project in which i have Automated the Process of Deployi
 
 2. Check the permissions of the Script using:
 	# ls -l
-it should be: 
-	# [-rwxr-xr-x]
+it should be:
+	# -rwxr-xr-x
 
 3. Run the script using:
 	# ./jenkins.sh
