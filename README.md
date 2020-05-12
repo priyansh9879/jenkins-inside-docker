@@ -6,8 +6,8 @@ This is my first Docker Project in which i have Automated the Process of Deployi
 
 2. Check the permissions of the Script using:
 	# ls -l
-it should be -> 
-	#[-rwxr-xr-x]
+it should be: 
+	# [-rwxr-xr-x]
 
 3. Run the script using:
 	# ./jenkins.sh
@@ -18,7 +18,7 @@ it should be ->
 
 6. After completion, you can login to jenkins portal using the details provided by the script.
 
-#Some Basic Docker Vocabulary:
+# Some Basic Docker Vocabulary:
 
 a) For Stoping your Container:
 	# docker stop <container_name>
