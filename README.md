@@ -37,13 +37,17 @@ Note: In place of localhost, you can also use your ontainer IP address and use t
 # Some Basic Docker Vocabulary:
 
 a) For Stoping your Container:
+	
 	# docker stop <container_name>
 
 b) For Starting your Container:
+	
 	# docker start <container_name>
 
 c) For deleting container, first stop the container and then:
+	
 	# docker rm <container_name>
 
 d) For going inside jenkins container:
+	
 	# docker exec -it <container_name> /bin/bash
