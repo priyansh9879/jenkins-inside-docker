@@ -4,17 +4,17 @@ This is my first Docker Project in which i have Automated the Process of Deployi
 
 You can Pull the Jenkins Image Manually from my Docker Hub Repository.
 
-# docker pull priyansh9879/centos-jenkins:7
+	# docker pull priyansh9879/centos-jenkins:7
 
 For running the image, you can simply use:
 
-# docker run -dit --name jenkins --privileged -expose -p 8081:8080 -v /:/host priyansh9879/centos-jenkins:7
+	# docker run -dit --name jenkins --privileged -expose -p 8081:8080 -v /:/host priyansh9879/centos-jenkins:7
 
 Note: In place of jenkins, you can use any name for your container and in place of 8081, you can use any port number. Don't use Port [8080] as it will raise some conflicts in you Rhel8 VM.
 
 You can access your Jenkins Server from:
 
-# http://localhost:8081
+	# http://localhost:8081
 
 Note: In place of localhost, you can also use your ontainer IP address and use the port that you have used while running Jenkins Container.
 
